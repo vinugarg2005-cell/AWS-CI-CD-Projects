@@ -5,12 +5,15 @@ on:
     branches: [ "main" ]
 
 jobs:
-  deploy:
+    deploy:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+
+    - name: Create deployment zip
+      run: zip -r deploy.zip . -x "*.git*"
 
     - name: Deploy to EB
       uses: einaregilsson/beanstalk-deploy@v21
